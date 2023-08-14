@@ -4,10 +4,10 @@ import { v4 as uuidv4 } from 'uuid';
 
 export const SuperAgentContext = createContext()
 const SuperAgentState = (props) => {
-    const superAgentData = [
+    const [superAgent, setSuperAgent] = useState([
         { id: uuidv4(), name: 'kanchan kharel', email: 'kanchankhl2@gmail.com', address: 'kalanki', phone: '9843040214' },
-    ]
-    const [superAgent, setSuperAgent] = useState(superAgentData)
+        { id: uuidv4(), name: 'kanchan kharel', email: 'kanchankhl2@gmail.com', address: 'kalanki', phone: '9843040214' },
+    ])
 
 
     //catch the change in storage

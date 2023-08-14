@@ -6,12 +6,15 @@ import Modal from 'react-bootstrap/Modal';
 import AddSuperAgent from './AddSuperAgent';
 import { AiOutlineClose } from "react-icons/ai";
 const SuperAgent = () => {
+
     const { superAgent } = useContext(SuperAgentContext)
     const [addShow, setAddShow] = useState(false);
     const { deleteStudent } = useContext(SuperAgentContext)
     const [show, setShow] = useState(false)
     const handleShow = () => setShow(true);
     const handleClose = () => setShow(false);
+
+    console.log(superAgent);
     return (
         <>
             <div style={{ padding: "20px" }} className='container grid'>
@@ -32,7 +35,7 @@ const SuperAgent = () => {
                     </thead>
                     <tbody>
                         {
-                            superAgent?.map((agentData) => {
+                            superAgent.map((agentData) => {
                                 return <tr key={agentData.id}>
                                     <td>{agentData.name}</td>
                                     <td>{agentData.address}</td>
