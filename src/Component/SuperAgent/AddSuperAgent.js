@@ -4,7 +4,7 @@ import { SuperAgentContext } from "../Context/SuperAgentState";
 
 
 
-const AddSuperAgent = (props) => {
+const AddSuperAgent = ({ onHide }) => {
 
   // e get this addSTudent from student context
   const { addSuperAgent } = useContext(SuperAgentContext);
@@ -79,7 +79,7 @@ const AddSuperAgent = (props) => {
       </Form.Group>
 
       <Form.Group>
-        <Button variant="success" type="submit" onClick={props.onHide}>
+        <Button variant="success" type="submit" onClick={onHide}>
           Add Agent
         </Button>
       </Form.Group>

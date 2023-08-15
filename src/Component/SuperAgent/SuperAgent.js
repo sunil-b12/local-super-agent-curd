@@ -5,16 +5,17 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import AddSuperAgent from './AddSuperAgent';
 import { AiOutlineClose } from "react-icons/ai";
+import UpdateSuperAgent from './UpdateSuperAgent';
 const SuperAgent = () => {
 
     const { superAgent } = useContext(SuperAgentContext)
     const [addShow, setAddShow] = useState(false);
-    const { deleteStudent } = useContext(SuperAgentContext)
+    const { deleteSuperAgent } = useContext(SuperAgentContext)
     const [show, setShow] = useState(false)
     const handleShow = () => setShow(true);
     const handleClose = () => setShow(false);
+    const [selectedAgentId, setSelectedAgentId] = useState(null);
 
-    console.log(superAgent);
     return (
         <>
             <div style={{ padding: "20px" }} className='container grid'>
@@ -42,8 +43,23 @@ const SuperAgent = () => {
                                     <td>{agentData.email}</td>
                                     <td>{agentData.phone}</td>
                                     <td>
-                                        <button onClick={handleShow} className="btn text-warning btn-act" data-toggle="modal"><i className="material-icons">&#xE254;</i></button>
-                                        <button onClick={() => deleteStudent(agentData.id)} className="btn text-danger btn-act" data-toggle="modal"><i className="material-icons">&#xE872;</i></button>
+                                        <button
+                                            onClick={() => {
+                                                setSelectedAgentId(agentData.id);
+                                                handleShow();
+                                            }}
+                                            className="btn text-warning btn-act"
+                                            data-toggle="modal"
+                                        >
+                                            <i className="material-icons">edit</i> {/* Use the correct class name */}
+                                        </button>
+                                        <button
+                                            onClick={() => deleteSuperAgent(agentData.id)}
+                                            className="btn text-danger btn-act"
+                                            data-toggle="modal"
+                                        >
+                                            <i className="material-icons">delete</i> {/* Use the correct class name */}
+                                        </button>
                                     </td>
                                 </tr>
 
@@ -78,7 +94,7 @@ const SuperAgent = () => {
                         </Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
-                        {/* <EditForm theStudent={student} /> */}
+                        <UpdateSuperAgent SuperAgent={superAgent} selectedAgentId={selectedAgentId} handleClose={handleClose} />
                     </Modal.Body>
                     <Modal.Footer>
                         <Button variant="secondary" onClick={handleClose}>
