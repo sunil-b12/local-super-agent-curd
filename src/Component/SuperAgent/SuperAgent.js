@@ -6,6 +6,7 @@ import Modal from 'react-bootstrap/Modal';
 import AddSuperAgent from './AddSuperAgent';
 import { AiOutlineClose } from "react-icons/ai";
 import UpdateSuperAgent from './UpdateSuperAgent';
+import { toast } from 'react-toastify';
 const SuperAgent = () => {
 
     const { superAgent } = useContext(SuperAgentContext)
@@ -54,9 +55,13 @@ const SuperAgent = () => {
                                             <i className="material-icons">edit</i> {/* Use the correct class name */}
                                         </button>
                                         <button
-                                            onClick={() => deleteSuperAgent(agentData.id)}
+                                            onClick={() => {
+                                                deleteSuperAgent(agentData.id);
+                                                toast.error("Super Agent Deleted successfully");
+                                            }}
                                             className="btn text-danger btn-act"
                                             data-toggle="modal"
+
                                         >
                                             <i className="material-icons">delete</i> {/* Use the correct class name */}
                                         </button>
@@ -90,7 +95,7 @@ const SuperAgent = () => {
                 <Modal show={show} onHide={handleClose} backdrop="static">
                     <Modal.Header>
                         <Modal.Title>
-                            Edit Student
+                            Edit Super Agent
                         </Modal.Title>
                     </Modal.Header>
                     <Modal.Body>

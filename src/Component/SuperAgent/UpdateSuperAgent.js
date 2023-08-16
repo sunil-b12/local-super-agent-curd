@@ -1,13 +1,14 @@
 import { Button, Form } from "react-bootstrap";
 import { useContext, useEffect, useState } from "react";
 import { SuperAgentContext } from "../Context/SuperAgentState";
+import { toast } from "react-toastify";
 //this is functional component
 
 
 
 const UpdateSuperAgent = ({ SuperAgent, selectedAgentId, handleClose }) => {
     const { updateSuperAgent } = useContext(SuperAgentContext);
-    
+
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [address, setAddress] = useState("");
@@ -28,6 +29,9 @@ const UpdateSuperAgent = ({ SuperAgent, selectedAgentId, handleClose }) => {
         e.preventDefault();
         const updatedSuperAgent = { id: selectedAgentId, name, email, address, phone };
         updateSuperAgent(selectedAgentId, updatedSuperAgent);
+        toast.success("Super Agent Update successfully", {
+            position: toast.POSITION.TOP_RIGHT // Set the position of the toast
+        });
     }
 
 

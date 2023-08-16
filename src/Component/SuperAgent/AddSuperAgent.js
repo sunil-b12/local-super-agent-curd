@@ -1,6 +1,7 @@
 import { Button, Form } from "react-bootstrap";
 import { useContext, useState } from "react";
 import { SuperAgentContext } from "../Context/SuperAgentState";
+import { toast } from "react-toastify";
 
 
 
@@ -25,10 +26,12 @@ const AddSuperAgent = ({ onHide }) => {
   const { name, email, address, phone } = newSuperAgent;
 
   const handleSubmit = (e) => {
-    e.preventDefault()
+    e.preventDefault();
     addSuperAgent(name, email, address, phone);
-  }
-
+    toast.success("Super Agent Added successfully", {
+      position: toast.POSITION.TOP_RIGHT // Set the position of the toast
+    });
+  };
 
 
   return (
